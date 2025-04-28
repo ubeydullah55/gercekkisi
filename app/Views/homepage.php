@@ -134,7 +134,7 @@
 </div>
 <!-- welcome modal start -->
 
-
+<!--
 <script>
 	function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi, uyruk, kimlikBelgesiTuru, kimlikBelgesiNumarasi, eposta) {
 		const row = el.closest('tr');
@@ -157,10 +157,100 @@
 		if (isValidImage(img1Src) || isValidImage(img2Src)) {
 			imagesHtml = '<div class="images" style="display:flex;justify-content:space-between;margin-bottom:20px;">';
 			if (isValidImage(img1Src)) {
-				imagesHtml += `<img src="${img1Src}" style="width:45%;" onerror="this.style.display='none'">`;
+				imagesHtml += `<img src="${img1Src}" style="width:45%;" onerror="this.style.display='none'">`;				
 			}
 			if (isValidImage(img2Src)) {
 				imagesHtml += `<img src="${img2Src}" style="width:45%;" onerror="this.style.display='none'">`;
+			}
+			imagesHtml += '</div>';			
+		}
+
+		const printWindow = window.open('', '', 'width=800,height=600');
+		printWindow.document.write(`
+        <html>
+        <head>
+          <title>Yazdır</title>
+          <style>
+            body {font-family:Arial,sans-serif;padding:20px;}
+            table {border-collapse:collapse;width:100%;margin-top:20px;}
+            td,th {border:1px solid #000;padding:8px;}
+            .signature-box {
+              width:250px;height:50px;border:1px solid #000;
+              margin-top:40px;float:right;text-align:center;
+              padding-top:70px;font-weight:bold;
+            }
+          </style>
+        </head>
+        <body>
+          <h2 style="text-align:center;">GERÇEK KİŞİ TANI FORMU</h2>
+          ${imagesHtml}
+         <table>
+                <tr><th>Ad Soyad</th><td>${adSoyad}</td></tr>
+                <tr><th>T.C. Kimlik</th><td>${tc}</td></tr>
+                <tr><th>Doğum Yeri</th><td>${dogumYeri}</td></tr>
+                <tr><th>Doğum Tarihi</th><td>${dogumTarihi}</td></tr>
+                <tr><th>Anne Baba Adı</th><td>${anneAdi} / ${babaAdi}</td></tr>
+                <tr><th>Uyruk</th><td>${uyruk}</td></tr>
+                <tr><th>Kimlik Belgesinin Türü ve Numarası</th><td>${kimlikBelgesiTuru} / ${kimlikBelgesiNumarasi}</td></tr>
+                <tr><th>Adres</th><td>${sehir} / ${ilce}</td></tr>
+                <tr><th>İş Ünvanı</th><td>${unvan}</td></tr>
+                <tr><th>Cep Telefonu</th><td>${telefon}</td></tr>
+                <tr><th>E-posta</th><td>${eposta}</td></tr>
+            </table>
+          <div class="signature-box"></div>
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() { window.close(); };
+            }
+          <\/script>
+        </body>
+        </html>
+    `);
+		printWindow.document.close();
+	}
+</script>
+ -->
+ <script>
+	function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi, uyruk, kimlikBelgesiTuru, kimlikBelgesiNumarasi, eposta) {
+		const row = el.closest('tr');
+		const cells = row.querySelectorAll('td');
+		const adSoyad = cells[1].innerText;
+		const tc = cells[2].innerText;
+		const unvan = cells[3].innerText;
+		const telefon = cells[4].innerText;
+		const sehir = cells[5].innerText;
+		const ilce = cells[6].innerText;
+		const not = cells[7].innerText;
+
+		// Küçük yardımcı fonksiyon
+		function isValidImage(src) {
+			return src && src.trim() && src.trim().toLowerCase() !== 'null' && src.trim().toLowerCase() !== 'undefined';
+		}
+
+		// imagesHtml’i oluştur
+		let imagesHtml = '';
+		if (isValidImage(img1Src) || isValidImage(img2Src)) {
+			imagesHtml = '<div class="images" style="display:flex;justify-content:space-between;margin-bottom:20px;">';
+			if (isValidImage(img1Src)) {
+				imagesHtml += `
+					<div style="position:relative;width:45%;">
+						<img src="${img1Src}" style="width:100%;" onerror="this.style.display='none'">
+						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.8;pointer-events:none;white-space:nowrap;">
+							YALNIZCA ALTIN SATIŞI İÇİNDİR
+						</div>
+					</div>
+				`;
+			}
+			if (isValidImage(img2Src)) {
+				imagesHtml += `
+					<div style="position:relative;width:45%;">
+						<img src="${img2Src}" style="width:100%;" onerror="this.style.display='none'">
+					<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.8;pointer-events:none;white-space:nowrap;">
+							YALNIZCA ALTIN SATIŞI İÇİNDİR
+						</div>
+					</div>
+				`;
 			}
 			imagesHtml += '</div>';
 		}
@@ -210,6 +300,9 @@
 		printWindow.document.close();
 	}
 </script>
+
+
+
 
 
 
