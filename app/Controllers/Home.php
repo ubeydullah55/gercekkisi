@@ -14,14 +14,15 @@ class Home extends BaseController
     
     public function index()
     {
-        // Modeli yükleyelim
-        $model = new \App\Models\CustomerModel();
-        
-        // Veritabanından verileri alalım
-        $customers = $model->findAll(); // Tüm verileri alır
-    
-        // View'a verileri göndereceğiz
-        return view('homepage', ['customers' => $customers]);
+   // Modeli yükleyelim
+$model = new \App\Models\CustomerModel();
+
+// Veritabanından id'ye göre büyükten küçüğe sıralı verileri alalım
+$customers = $model->orderBy('id', 'DESC')->findAll(); // DESC ile büyükten küçüğe sıralama
+
+// View'a verileri göndereceğiz
+return view('homepage', ['customers' => $customers]);
+
     }
     
 }

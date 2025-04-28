@@ -6,6 +6,11 @@
 	<div class="pd-ltr-20 xs-pd-20-10">
 		<div class="min-height-200px">
 			<div class="page-header">
+				<?php if (session()->getFlashdata('success')): ?>
+					<div class="alert alert-success" style="text-align: center;">
+						<?= session()->getFlashdata('success') ?>
+					</div>
+				<?php endif; ?>
 				<div class="row">
 					<div class="col-md-6 col-sm-12">
 						<div class="title">
@@ -122,8 +127,8 @@
 			<!-- Export Datatable End -->
 		</div>
 		<div class="footer-wrap pd-20 mb-20 card-box">
-			DeskApp - Bootstrap 4 Admin Template By
-			<a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
+			Creadet By
+			<a href="https://github.com/ubeydullah55" target="_blank">Ubeydullah Doğan</a>
 		</div>
 	</div>
 </div>

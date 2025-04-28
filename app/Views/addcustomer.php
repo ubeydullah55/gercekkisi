@@ -164,7 +164,7 @@
                         <!-- Form grid End -->
                         <div class="footer-wrap pd-20 mb-20 card-box">
                             Created by
-                            <a href="https://github.com/dropways" target="_blank">ubeydullah doğan</a>
+                            <a href="https://github.com/ubeydullah55" target="_blank">ubeydullah doğan</a>
                         </div>
                     </div>
 

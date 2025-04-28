@@ -159,8 +159,7 @@ public function editcustomer($customerId)
 
     $model = new \App\Models\CustomerModel();
     $model->update($customerId, $data);
-
-    return redirect()->back()->with('success', 'Müşteri bilgileri başarıyla güncellendi.');
+    return redirect()->to('/homepage')->with('success', 'Müşteri bilgileri başarıyla güncellendi.');
 }
 
 
