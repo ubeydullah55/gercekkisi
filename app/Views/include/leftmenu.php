@@ -133,7 +133,7 @@
 
 <div class="left-side-bar">
 	<div class="brand-logo">
-		<a href="index.html">
+		<a href="<?= base_url("/homepage") ?>">
 			<img src="<?= base_url("assets/") ?>vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
 			<img
 				src="<?= base_url("assets/") ?>vendors/images/deskapp-logo-white.svg"

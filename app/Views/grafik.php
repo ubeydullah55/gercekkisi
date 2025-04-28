@@ -46,7 +46,7 @@
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-					<h4 class="text-blue h4">Kayıt Açma Grafiği</h4>
+					<h4 class="text-blue h4" >Kayıt Açma Grafiği</h4>
 				</div>
 				<div class="pb-20">
                 <div class="row">
@@ -54,6 +54,7 @@
 							<div class="pd-20 card-box height-100-p">
 								<h4 class="h4 text-blue">Genel Kayıt Açma Oranı</h4>
 								<div id="chart8"></div>
+                                <p style="text-align: center;">Toplam Kayıt Sayısı: <?= $totalCount; ?></p>
 							</div>
 						</div>
 						<div class="col-md-6 mb-30">
@@ -61,6 +62,7 @@
 						<div class="card-box height-100-p pd-20">
 							<h2 class="h4 mb-20">Aylık Kayıt Açma Sayısı</h2>
 							<div id="chart5"></div>
+                            <p style="text-align: center;">Bu Ay Yapılan Toplam Kayıt Sayısı: <?= array_sum($thisMonthCounts); ?></p>
 						</div>				
 						</div>
 					</div>

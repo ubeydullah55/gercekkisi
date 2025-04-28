@@ -29,7 +29,8 @@ class CustomerModel extends Model
         'img_1',
         'img_2',
         'created_date',
-        'ekleyen_id'
+        'ekleyen_id',
+        'status',
     ];
 
     protected $useTimestamps = false; // Eğer created_at, updated_at yoksa false

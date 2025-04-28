@@ -75,9 +75,25 @@ class AddCustomerController extends BaseController
     public function deletecustomer($id)
 {
     $customerModel = new \App\Models\CustomerModel(); // Model ismini senin kullandığın modele göre değiştir.
-    $customerModel->delete($id);
 
+    // Müşterinin verisini silmek yerine status'ü güncelliyoruz
+    $session = session(); // Oturumu başlatıyoruz
+
+    // Oturumdan kullanıcı ID'sini alıyoruz
+    $userId = $session->get('user_id'); 
+    
+    // Şu anki tarihi alıyoruz
+    $currentDate = date('Y-m-d H:i:s'); // Yıl-Ay-Gün Saat:Dakika:Saniye formatında
+    
+    // Veriyi güncelliyoruz
+    $customerModel->update($id, [
+        'status' => 'P',        // Durum 'P' olarak güncelleniyor
+        'created_date' => $currentDate, // 'created_date' şu anki zamanla güncelleniyor
+        'ekleyen_id' => $userId  // 'ekleyen_id' oturumdan alınan kullanıcı ID'siyle güncelleniyor
+    ]);
+    
     return redirect()->to('/homepage')->with('success', 'Müşteri başarıyla silindi.');
+    
 }
 
 public function customerview($id)
