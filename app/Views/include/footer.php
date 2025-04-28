@@ -1,7 +1,4 @@
 
-		<button class="welcome-modal-btn">
-			<i class="fa fa-download"></i> Download
-		</button>
 		<!-- welcome modal end -->
 		<!-- js -->
 		<script src="<?= base_url("assets/") ?>vendors/scripts/core.js"></script>

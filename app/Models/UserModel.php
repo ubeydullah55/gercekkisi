@@ -22,7 +22,7 @@ class UserModel extends Model
     protected $validationRules = [
         'name'     => 'required|min_length[3]|max_length[255]',
         'password' => 'required|min_length[6]|max_length[255]',
-        'role'     => 'required|integer|in_list[0,1,2]', // rol değerlerine göre düzenleyebilirsin
+        'role'     => 'required|integer|in_list[0,1,2,3]', // rol değerlerine göre düzenleyebilirsin
     ];
 
     protected $validationMessages = [

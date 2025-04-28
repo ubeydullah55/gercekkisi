@@ -17,3 +17,8 @@ $routes->get('/customerdelete/(:num)', 'AddCustomerController::deletecustomer/$1
 $routes->get('/customerview/(:num)', 'AddCustomerController::customerview/$1');
 $routes->get('/customereditview/(:num)', 'AddCustomerController::customereditview/$1');
 $routes->post('/editcustomer/(:num)', 'AddCustomerController::editcustomer/$1');
+$routes->get('/addpersonel', 'PersonelController::index');
+
+$routes->post('/updateuser', 'PersonelController::updateuser');
+$routes->post('/insertuser', 'PersonelController::insertuser');
+$routes->get('/deleteuser/(:num)', 'PersonelController::deleteuser/$1');
