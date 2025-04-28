@@ -22,7 +22,7 @@
 							</ol>
 						</nav>
 					</div>
-				
+
 				</div>
 			</div>
 			<!-- Simple Datatable start -->
@@ -49,7 +49,7 @@
 
 						<thead>
 							<tr>
-							<th>İd</th>
+								<th>İd</th>
 								<th class="table-plus datatable-nosort">Ad Soyad</th>
 								<th class="table-plus datatable-nosort">T.C Kimlik</th>
 								<th class="table-plus datatable-nosort">İş Ünvanı</th>
@@ -61,10 +61,13 @@
 							</tr>
 						</thead>
 						<tbody>
-
+							<?php
+							// Session'dan role değerini alalım
+							$role = session()->get('role');
+							?>
 							<?php foreach ($customers as $customer): ?>
 								<tr>
-								<td><?= esc($customer['id']); ?></td>
+									<td><?= esc($customer['id']); ?></td>
 									<td class="table-plus"><?= esc($customer['ad']) . ' ' . esc($customer['soyad']); ?></td>
 									<td><?= esc($customer['tc']); ?></td>
 									<td><?= esc($customer['meslek']); ?></td>
@@ -78,9 +81,15 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-											<a class="dropdown-item" href="#" onclick="redirectToViewPage(<?= $customer['id']; ?>)"><i class="dw dw-eye"></i> İncele</a>
-												<a class="dropdown-item" href="#" onclick="redirectToEditPage(<?= $customer['id']; ?>)"><i class="dw dw-edit2"></i> Düzenle</a>
-												<a class="dropdown-item" href="#" onclick="deleteCustomer(<?= $customer['id']; ?>, '<?= esc($customer['ad']) . ' ' . esc($customer['soyad']); ?>')"><i class="dw dw-delete-3"></i> Sil</a>
+												<a class="dropdown-item" href="#" onclick="redirectToViewPage(<?= $customer['id']; ?>)"><i class="dw dw-eye"></i> İncele</a>
+												<?php if ($role == 1 || $role == 2): ?>
+													<a class="dropdown-item" href="#" onclick="redirectToEditPage(<?= $customer['id']; ?>)">
+														<i class="dw dw-edit2"></i> Düzenle
+													</a>
+													<a class="dropdown-item" href="#" onclick="deleteCustomer(<?= $customer['id']; ?>, '<?= esc($customer['ad']) . ' ' . esc($customer['soyad']); ?>')">
+														<i class="dw dw-delete-3"></i> Sil
+													</a>
+												<?php endif; ?>
 												<a class="dropdown-item" href="#" onclick="printRow(this,
     '<?= base_url('tccard/' . $customer['img_1']); ?>', 
     '<?= base_url('tccard/' . $customer['img_2']); ?>', 
@@ -122,37 +131,37 @@
 
 
 <script>
-function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi, uyruk, kimlikBelgesiTuru, kimlikBelgesiNumarasi, eposta) {
-    const row = el.closest('tr');
-    const cells = row.querySelectorAll('td');
-    const adSoyad = cells[1].innerText;
-    const tc      = cells[2].innerText;
-    const unvan   = cells[3].innerText;
-    const telefon = cells[4].innerText;
-    const sehir   = cells[5].innerText;
-    const ilce    = cells[6].innerText;
-	const not = cells[7].innerText;
+	function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi, uyruk, kimlikBelgesiTuru, kimlikBelgesiNumarasi, eposta) {
+		const row = el.closest('tr');
+		const cells = row.querySelectorAll('td');
+		const adSoyad = cells[1].innerText;
+		const tc = cells[2].innerText;
+		const unvan = cells[3].innerText;
+		const telefon = cells[4].innerText;
+		const sehir = cells[5].innerText;
+		const ilce = cells[6].innerText;
+		const not = cells[7].innerText;
 
-    // Küçük yardımcı fonksiyon
-    function isValidImage(src) {
-        return src && src.trim() && src.trim().toLowerCase() !== 'null' && src.trim().toLowerCase() !== 'undefined';
-    }
+		// Küçük yardımcı fonksiyon
+		function isValidImage(src) {
+			return src && src.trim() && src.trim().toLowerCase() !== 'null' && src.trim().toLowerCase() !== 'undefined';
+		}
 
-    // imagesHtml’i oluştur
-    let imagesHtml = '';
-    if (isValidImage(img1Src) || isValidImage(img2Src)) {
-        imagesHtml = '<div class="images" style="display:flex;justify-content:space-between;margin-bottom:20px;">';
-        if (isValidImage(img1Src)) {
-            imagesHtml += `<img src="${img1Src}" style="width:45%;" onerror="this.style.display='none'">`;
-        }
-        if (isValidImage(img2Src)) {
-            imagesHtml += `<img src="${img2Src}" style="width:45%;" onerror="this.style.display='none'">`;
-        }
-        imagesHtml += '</div>';
-    }
+		// imagesHtml’i oluştur
+		let imagesHtml = '';
+		if (isValidImage(img1Src) || isValidImage(img2Src)) {
+			imagesHtml = '<div class="images" style="display:flex;justify-content:space-between;margin-bottom:20px;">';
+			if (isValidImage(img1Src)) {
+				imagesHtml += `<img src="${img1Src}" style="width:45%;" onerror="this.style.display='none'">`;
+			}
+			if (isValidImage(img2Src)) {
+				imagesHtml += `<img src="${img2Src}" style="width:45%;" onerror="this.style.display='none'">`;
+			}
+			imagesHtml += '</div>';
+		}
 
-    const printWindow = window.open('', '', 'width=800,height=600');
-    printWindow.document.write(`
+		const printWindow = window.open('', '', 'width=800,height=600');
+		printWindow.document.write(`
         <html>
         <head>
           <title>Yazdır</title>
@@ -193,8 +202,8 @@ function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi
         </body>
         </html>
     `);
-    printWindow.document.close();
-}
+		printWindow.document.close();
+	}
 </script>
 
 
@@ -222,15 +231,15 @@ function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi
 
 <script>
 	function redirectToEditPage(id) {
-    // Kayıt etme ekranına yönlendiriyoruz ve ID parametresini URL'ye ekliyoruz
-    window.location.href = '<?= base_url("customereditview/"); ?>' + id;
-}
+		// Kayıt etme ekranına yönlendiriyoruz ve ID parametresini URL'ye ekliyoruz
+		window.location.href = '<?= base_url("customereditview/"); ?>' + id;
+	}
 </script>
 <script>
 	function redirectToViewPage(id) {
-    // Kayıt etme ekranına yönlendiriyoruz ve ID parametresini URL'ye ekliyoruz
-    window.location.href = '<?= base_url("customerview/"); ?>' + id;
-}
+		// Kayıt etme ekranına yönlendiriyoruz ve ID parametresini URL'ye ekliyoruz
+		window.location.href = '<?= base_url("customerview/"); ?>' + id;
+	}
 </script>
 
 

@@ -5,7 +5,14 @@ namespace App\Controllers;
 
 class AddCustomerController extends BaseController
 {
-    public function index(): string
+    public function __construct()
+    {
+        if (!session()->get('logged_in')) {
+            header('Location: ' . base_url('/'));
+            exit();
+        }
+    }
+    public function index()
     {
         return view('addcustomer');
     }

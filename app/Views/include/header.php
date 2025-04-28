@@ -199,12 +199,12 @@
 							<span class="user-icon">
 								<img src="<?= base_url("assets/") ?>vendors/images/photo1.jpg" alt="" />
 							</span>
-							<span class="user-name">Ross C. Lopez</span>
+							<span class="user-name"><?= session('name') ?></span>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
 						>
-							<a class="dropdown-item" href="<?= base_url("assets/") ?>profile.html"
+		<!-- <a class="dropdown-item" href="<?= base_url("assets/") ?>profile.html"
 								><i class="dw dw-user1"></i> Profile</a
 							>
 							<a class="dropdown-item" href="<?= base_url("assets/") ?>profile.html"
@@ -212,10 +212,10 @@
 							>
 							<a class="dropdown-item" href="<?= base_url("assets/") ?>faq.html"
 								><i class="dw dw-help"></i> Help</a
-							>
-							<a class="dropdown-item" href="<?= base_url("assets/") ?>login.html"
-								><i class="dw dw-logout"></i> Log Out</a
-							>
+							>-->
+							<a class="dropdown-item" href="<?= base_url('logout') ?>">
+    <i class="dw dw-logout"></i> Çıkış Yap
+</a>
 						</div>
 					</div>
 				</div>

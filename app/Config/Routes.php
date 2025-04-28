@@ -7,6 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  */
 //$routes->get('/', 'Home::index');
 $routes->get('/', 'LoginController::index');
+$routes->post('/login', 'LoginController::login');
+$routes->get('/logout', 'LoginController::logout');
+
 $routes->get('/homepage', 'Home::index');
 $routes->get('/addcustomer', 'AddCustomerController::index');
 $routes->post('/savecustomer', 'AddCustomerController::savecustomer');
