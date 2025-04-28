@@ -163,6 +163,12 @@
 						<span class="micon bi bi-plus"></span><span class="mtext">Ekle</span>
 					</a>
 				</li>
+			
+				<li>
+					<a href="<?= site_url('grafik') ?>" class="dropdown-toggle no-arrow">
+						<span class="micon bi bi-bar-chart"></span><span class="mtext">Grafik</span>
+					</a>
+				</li>
 				<?php if ($role == 1): ?>
 					<li>
 						<a href="<?= site_url('addpersonel') ?>" class="dropdown-toggle no-arrow">
@@ -170,8 +176,6 @@
 						</a>
 					</li>
 				<?php endif; ?>
-
-
 			</ul>
 
 		</div>

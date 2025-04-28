@@ -20,7 +20,10 @@ class AddCustomerController extends BaseController
     {
         $uploadedFileNameOnyuz = 'default.png'; // Başta default resim
         $uploadedFileNameArkayuz = 'default.png'; // Başta default resim
-    
+        $createdDate = date('Y-m-d H:i:s');
+
+    // Session'dan kullanıcı ID'sini alıyoruz
+    $userId = session()->get('user_id'); 
         $onyuzFile = $this->request->getFile('onyuz_resim');
         if ($onyuzFile && $onyuzFile->getError() == 0) {
             if ($onyuzFile->isValid() && !$onyuzFile->hasMoved()) {
@@ -58,6 +61,8 @@ class AddCustomerController extends BaseController
             'musteri_notu'  => $this->request->getPost('not'),
             'img_1'         => $uploadedFileNameOnyuz, 
             'img_2'         => $uploadedFileNameArkayuz,
+            'created_date'                   => $createdDate,
+            'ekleyen_id'                   => $userId,
         ];
     
         $model = new \App\Models\CustomerModel();

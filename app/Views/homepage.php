@@ -283,7 +283,7 @@
                 <tr><th>Uyruk</th><td>${uyruk}</td></tr>
                 <tr><th>Kimlik Belgesinin Türü ve Numarası</th><td>${kimlikBelgesiTuru} / ${kimlikBelgesiNumarasi}</td></tr>
                 <tr><th>Adres</th><td>${sehir} / ${ilce}</td></tr>
-                <tr><th>İş Ünvanı</th><td>${unvan}</td></tr>
+                <tr><th>Mesleği</th><td>${unvan}</td></tr>
                 <tr><th>Cep Telefonu</th><td>${telefon}</td></tr>
                 <tr><th>E-posta</th><td>${eposta}</td></tr>
             </table>

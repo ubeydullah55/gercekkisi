@@ -22,3 +22,5 @@ $routes->get('/addpersonel', 'PersonelController::index');
 $routes->post('/updateuser', 'PersonelController::updateuser');
 $routes->post('/insertuser', 'PersonelController::insertuser');
 $routes->get('/deleteuser/(:num)', 'PersonelController::deleteuser/$1');
+
+$routes->get('/grafik', 'GrafikController::index');
