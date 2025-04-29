@@ -47,19 +47,19 @@
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            <label>Ad</label>
+                            <label>Ad<span class="text-danger">*</span></label>
                             <input type="text" name="ad" class="form-control" value="<?= esc($customer['ad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            <label>Soyad</label>
+                            <label>Soyad<span class="text-danger">*</span></label>
                             <input type="text" name="soyad" class="form-control" value="<?= esc($customer['soyad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            <label>T.C Kimlik Numarası</label>
+                            <label>T.C Kimlik Numarası<span class="text-danger">*</span></label>
                             <input type="text" name="tc" class="form-control" value="<?= esc($customer['tc']) ?>" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required />
                         </div>
                     </div>
@@ -143,8 +143,8 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label>Not</label>
-                            <textarea name="not" class="form-control" rows="4"><?= esc($customer['musteri_notu']) ?></textarea>
+                            <label>Not<span class="text-danger">*</span></label>
+                            <textarea name="not" class="form-control" rows="4" oninput="this.value = this.value.toUpperCase();" required><?= esc($customer['musteri_notu']) ?></textarea>
                         </div>
                     </div>
                 </div>

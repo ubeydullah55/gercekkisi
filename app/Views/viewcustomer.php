@@ -46,67 +46,67 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Ad</label>
-                            <input type="text" name="ad" class="form-control" value="<?= esc($customer['ad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
+                            <input type="text" name="ad" class="form-control" value="<?= esc($customer['ad']) ?>" oninput="this.value = this.value.toUpperCase();" required disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Soyad</label>
-                            <input type="text" name="soyad" class="form-control" value="<?= esc($customer['soyad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
+                            <input type="text" name="soyad" class="form-control" value="<?= esc($customer['soyad']) ?>" oninput="this.value = this.value.toUpperCase();" required disabled />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>T.C Kimlik Numarası</label>
-                            <input type="text" name="tc" class="form-control" value="<?= esc($customer['tc']) ?>" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required />
+                            <input type="text" name="tc" class="form-control" value="<?= esc($customer['tc']) ?>" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Doğum Tarihi</label>
-                            <input type="date" name="dogum_tarihi" class="form-control" value="<?= esc($customer['dogum_tarihi']) ?>" />
+                            <input type="date" name="dogum_tarihi" class="form-control" value="<?= esc($customer['dogum_tarihi']) ?>" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Doğum Yeri</label>
-                            <input type="text" name="dogum_yeri" class="form-control" value="<?= esc($customer['dogum_yeri']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="dogum_yeri" class="form-control" value="<?= esc($customer['dogum_yeri']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Anne Adı</label>
-                            <input type="text" name="anne_adi" class="form-control" value="<?= esc($customer['anne_adi']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="anne_adi" class="form-control" value="<?= esc($customer['anne_adi']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Baba Adı</label>
-                            <input type="text" name="baba_adi" class="form-control" value="<?= esc($customer['baba_adi']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="baba_adi" class="form-control" value="<?= esc($customer['baba_adi']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Uyruğu</label>
-                            <input type="text" name="uyruk" class="form-control" value="<?= esc($customer['uyruk']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="uyruk" class="form-control" value="<?= esc($customer['uyruk']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Kimlik Belgesinin Türü</label>
-                            <input type="text" name="belge_turu" class="form-control" value="<?= esc($customer['kimlik_belgesi_turu']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="belge_turu" class="form-control" value="<?= esc($customer['kimlik_belgesi_turu']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Kimlik Belgesinin Numarası</label>
-                            <input type="text" name="belge_numarası" class="form-control" value="<?= esc($customer['kimlik_belgesi_numarası']) ?>" />
+                            <input type="text" name="belge_numarası" class="form-control" value="<?= esc($customer['kimlik_belgesi_numarası']) ?>" disabled/>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>E-Posta</label>
-                            <input type="text" name="eposta" class="form-control" value="<?= esc($customer['e_posta']) ?>" />
+                            <input type="text" name="eposta" class="form-control" value="<?= esc($customer['e_posta']) ?>" disabled/>
                         </div>
                     </div>
                 </div>
@@ -115,25 +115,25 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Telefon Numarası</label>
-                            <input type="text" name="tel" class="form-control" value="<?= esc($customer['tel']) ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                            <input type="text" name="tel" class="form-control" value="<?= esc($customer['tel']) ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '')" disabled/>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Meslek Bilgisi</label>
-                            <input type="text" name="meslek" class="form-control" value="<?= esc($customer['meslek']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="meslek" class="form-control" value="<?= esc($customer['meslek']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Şehir</label>
-                            <input type="text" name="sehir" class="form-control" value="<?= esc($customer['sehir']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="sehir" class="form-control" value="<?= esc($customer['sehir']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Adres</label>
-                            <input type="text" name="adres" class="form-control" value="<?= esc($customer['adres']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="adres" class="form-control" value="<?= esc($customer['adres']) ?>" oninput="this.value = this.value.toUpperCase();" disabled/>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Not</label>
-                            <textarea name="not" class="form-control" rows="4"><?= esc($customer['musteri_notu']) ?></textarea>
+                            <textarea name="not" class="form-control" rows="4" disabled><?= esc($customer['musteri_notu']) ?></textarea>
                         </div>
                     </div>
                 </div>
