@@ -30,7 +30,7 @@ $('document').ready(function(){
 		"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		"language": {
 			"info": "_START_-_END_ of _TOTAL_ entries",
-			searchPlaceholder: "Search",
+			searchPlaceholder: "Müşteri Ara",
 			paginate: {
 				next: '<i class="ion-chevron-right"></i>',
 				previous: '<i class="ion-chevron-left"></i>'  
@@ -39,7 +39,27 @@ $('document').ready(function(){
 		dom: 'Bfrtp',
 		buttons: [
 		'copy', 'csv', 'pdf', 'print'
-		]
+		],
+		initComplete: function () {
+			const fixTurkishUppercase = function (val) {
+				return val
+					.replace(/i/g, 'İ')
+					.replace(/ı/g, 'I')
+					.replace(/ğ/g, 'Ğ')
+					.replace(/ü/g, 'Ü')
+					.replace(/ş/g, 'Ş')
+					.replace(/ö/g, 'Ö')
+					.replace(/ç/g, 'Ç')
+					.toUpperCase();
+			};
+	
+			let input = $('div.dataTables_filter input');
+			input.on('input', function () {
+				const pos = this.selectionStart;
+				this.value = fixTurkishUppercase(this.value);
+				this.setSelectionRange(pos, pos);
+			});
+		}
 	});
 
 	var table = $('.select-row').DataTable();
