@@ -146,6 +146,9 @@
                         </div>
                     </div>
                 </div>
+                <p><strong>İşlemi Yapan Kullanıcı:</strong> <?= esc($ekleyenName) ?></p>
+                <p><strong>İşlem Tarihi:</strong> <?= esc($customer['created_date']) ?></p>
+
             </form>
         </div>
     </div>

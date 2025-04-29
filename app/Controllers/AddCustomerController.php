@@ -109,14 +109,22 @@ class AddCustomerController extends BaseController
     public function customerview($id)
     {
         $customerModel = new \App\Models\CustomerModel();
-        $customer = $customerModel->find($id); // id'ye göre müşteri verilerini al
-
+        $userModel = new \App\Models\UserModel();
+    
+        $customer = $customerModel->find($id);
+    
         if (!$customer) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Müşteri bulunamadı.');
         }
-
-        // Müşteri verisini view'e gönder
-        return view('viewcustomer', ['customer' => $customer]);
+    
+        // Ekleyen kullanıcıyı bul
+        $ekleyenUser = $userModel->find($customer['ekleyen_id']);
+        $ekleyenName = $ekleyenUser ? $ekleyenUser['name'] : 'Bilinmiyor';
+    
+        return view('viewcustomer', [
+            'customer' => $customer,
+            'ekleyenName' => $ekleyenName
+        ]);
     }
     public function customereditview($id)
     {
