@@ -220,7 +220,7 @@
 					</div>
 				</div>
 				<div class="github-link">
-					<a href="https://github.com/dropways/deskapp" target="_blank"
+					<a href="" target="_blank"
 						><img src="<?= base_url("assets/") ?>vendors/images/github.svg" alt=""
 					/></a>
 				</div>
