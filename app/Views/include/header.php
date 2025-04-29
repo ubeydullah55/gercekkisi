@@ -97,7 +97,7 @@
 		<div class="pre-loader">
 			<div class="pre-loader-box">
 				<div class="loader-logo">
-					<img src="<?= base_url("assets/") ?>vendors/images/sarlogo.png" alt="" />
+					<img src="<?= base_url("assets/") ?>vendors/images/deskapp-logo.svg" alt="" />
 				</div>
 				<div class="loader-progress" id="progress_div">
 					<div class="bar" id="bar1"></div>
