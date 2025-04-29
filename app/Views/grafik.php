@@ -92,7 +92,8 @@
         var series = <?php echo json_encode($series); ?>;
         var months = <?php echo json_encode($months); ?>;
         var monthlySeries = <?php echo json_encode($monthlySeries); ?>;
-
+        var maxMonthly = Math.max(...monthlySeries);
+        var yAxisMax = Math.ceil((maxMonthly + 10) / 10) * 10;
         // Kullanıcı bazında bar grafik (Çubuk grafik)
         var options5 = {
             chart: {
@@ -161,6 +162,7 @@
         chart5.render();
 
         // Ay bazında line grafik (Aylık toplam kayıtları gösteriyoruz)
+        
         var options1 = {
             series: [{
                 name: 'Aylık Kayıt',
@@ -202,7 +204,7 @@
             },
             yaxis: {
                 min: 0,
-                max: 50,
+                max: yAxisMax,
                 title: { text: 'Kayıt Sayısı' },
             }
         };
