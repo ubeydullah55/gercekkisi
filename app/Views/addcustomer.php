@@ -51,13 +51,13 @@
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Ad<span class="text-danger">*</span></label>
-                                                <input type="text" name="ad" class="form-control"  oninput="this.value = this.value.toUpperCase();" required />
+                                                <input type="text" name="ad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Soyad<span class="text-danger">*</span></label>
-                                                <input type="text" name="soyad" class="form-control"  oninput="this.value = this.value.toUpperCase();" required />
+                                                <input type="text" name="soyad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
@@ -75,31 +75,31 @@
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Doğum Yeri</label>
-                                                <input type="text" name="dogum_yeri" class="form-control"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="dogum_yeri" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Anne Adı</label>
-                                                <input type="text" name="anne_adi" class="form-control"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="anne_adi" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Baba Adı</label>
-                                                <input type="text" name="baba_adi" class="form-control"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="baba_adi" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Uyruğu</label>
-                                                <input type="text" name="uyruk" class="form-control" value="T.C"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="uyruk" class="form-control" value="T.C" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Kimlik Belgesinin Türü</label>
-                                                <input type="text" name="belge_turu" class="form-control" value="T.C"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="belge_turu" class="form-control" value="T.C" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
@@ -125,19 +125,19 @@
                                         <div class="col-md-3 col-sm-12">
                                             <div class="form-group">
                                                 <label>Meslek Bilgisi</label>
-                                                <input type="text" name="meslek" class="form-control"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="meslek" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <div class="form-group">
                                                 <label>Şehir</label>
-                                                <input type="text" name="sehir" class="form-control"  oninput="this.value = this.value.toUpperCase();" />
+                                                <input type="text" name="sehir" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <div class="form-group">
                                                 <label>Adres</label>
-                                                <input type="text" name="adres" class="form-control"   oninput="this.value = this.value.toUpperCase();"/>
+                                                <input type="text" name="adres" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" />
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
                                         <div class="col-md-12 col-sm-12">
                                             <div class="form-group">
                                                 <label>Not<span class="text-danger">*</span></label>
-                                                <textarea name="not" oninput="this.value = this.value.toUpperCase();" class="form-control" rows="4" required></textarea>
+                                                <textarea name="not" oninput="this.value = fixTurkishUppercase(this.value);" class="form-control" rows="4" required></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -184,5 +184,10 @@
                         function previewImage2(event) {
                             var output = document.getElementById('bilezikResimPreview2');
                             output.src = URL.createObjectURL(event.target.files[0]);
+                        }
+                    </script>
+                    <script>
+                        function fixTurkishUppercase(val) {
+                            return val.replace(/i/g, 'İ').toUpperCase();
                         }
                     </script>

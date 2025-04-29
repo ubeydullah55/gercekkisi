@@ -14,14 +14,14 @@
 
             <form method="post" action="<?= base_url('editcustomer/' . $customer['id']) ?>" enctype="multipart/form-data">
                 <div class="row">
-                <input type="hidden" name="old_img_1" value="<?= esc($customer['img_1']) ?>">
-                <input type="hidden" name="old_img_2" value="<?= esc($customer['img_2']) ?>">
+                    <input type="hidden" name="old_img_1" value="<?= esc($customer['img_1']) ?>">
+                    <input type="hidden" name="old_img_2" value="<?= esc($customer['img_2']) ?>">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <div class="position-relative text-center">
                             <a class="d-block">
                                 <!-- Varsayılan Resim ve Resim Önizleme -->
-                                <img src="<?= base_url('tccard/'.$customer['img_1']) ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-md" id="bilezikResimPreview">
+                                <img src="<?= base_url('tccard/' . $customer['img_1']) ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-md" id="bilezikResimPreview">
                             </a>
                         </div>
                         <div class="form-group mt-3">
@@ -33,7 +33,7 @@
                         <div class="position-relative text-center">
                             <a class="d-block">
                                 <!-- Varsayılan Resim ve Resim Önizleme -->
-                                <img src="<?= base_url('tccard/'.$customer['img_2']) ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-md" id="bilezikResimPreview2">
+                                <img src="<?= base_url('tccard/' . $customer['img_2']) ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-md" id="bilezikResimPreview2">
                             </a>
                         </div>
                         <div class="form-group mt-3">
@@ -48,13 +48,13 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Ad<span class="text-danger">*</span></label>
-                            <input type="text" name="ad" class="form-control" value="<?= esc($customer['ad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
+                            <input type="text" name="ad" class="form-control" value="<?= esc($customer['ad']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" required />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Soyad<span class="text-danger">*</span></label>
-                            <input type="text" name="soyad" class="form-control" value="<?= esc($customer['soyad']) ?>" oninput="this.value = this.value.toUpperCase();" required />
+                            <input type="text" name="soyad" class="form-control" value="<?= esc($customer['soyad']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" required />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
@@ -72,31 +72,31 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Doğum Yeri</label>
-                            <input type="text" name="dogum_yeri" class="form-control" value="<?= esc($customer['dogum_yeri']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="dogum_yeri" class="form-control" value="<?= esc($customer['dogum_yeri']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Anne Adı</label>
-                            <input type="text" name="anne_adi" class="form-control" value="<?= esc($customer['anne_adi']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="anne_adi" class="form-control" value="<?= esc($customer['anne_adi']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Baba Adı</label>
-                            <input type="text" name="baba_adi" class="form-control" value="<?= esc($customer['baba_adi']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="baba_adi" class="form-control" value="<?= esc($customer['baba_adi']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Uyruğu</label>
-                            <input type="text" name="uyruk" class="form-control" value="<?= esc($customer['uyruk']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="uyruk" class="form-control" value="<?= esc($customer['uyruk']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Kimlik Belgesinin Türü</label>
-                            <input type="text" name="belge_turu" class="form-control" value="<?= esc($customer['kimlik_belgesi_turu']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="belge_turu" class="form-control" value="<?= esc($customer['kimlik_belgesi_turu']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
@@ -123,19 +123,19 @@
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Meslek Bilgisi</label>
-                            <input type="text" name="meslek" class="form-control" value="<?= esc($customer['meslek']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="meslek" class="form-control" value="<?= esc($customer['meslek']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Şehir</label>
-                            <input type="text" name="sehir" class="form-control" value="<?= esc($customer['sehir']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="sehir" class="form-control" value="<?= esc($customer['sehir']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group">
                             <label>Adres</label>
-                            <input type="text" name="adres" class="form-control" value="<?= esc($customer['adres']) ?>" oninput="this.value = this.value.toUpperCase();" />
+                            <input type="text" name="adres" class="form-control" value="<?= esc($customer['adres']) ?>" oninput="this.value = fixTurkishUppercase(this.value);" />
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
                             <label>Not<span class="text-danger">*</span></label>
-                            <textarea name="not" class="form-control" rows="4" oninput="this.value = this.value.toUpperCase();" required><?= esc($customer['musteri_notu']) ?></textarea>
+                            <textarea name="not" class="form-control" rows="4" oninput="this.value = fixTurkishUppercase(this.value);" required><?= esc($customer['musteri_notu']) ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -176,5 +176,10 @@
     function previewImage2(event) {
         var output = document.getElementById('bilezikResimPreview2');
         output.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+<script>
+    function fixTurkishUppercase(val) {
+        return val.replace(/i/g, 'İ').toUpperCase();
     }
 </script>

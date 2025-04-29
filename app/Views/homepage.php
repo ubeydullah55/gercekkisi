@@ -11,6 +11,11 @@
 						<?= session()->getFlashdata('success') ?>
 					</div>
 				<?php endif; ?>
+				<?php if (session()->getFlashdata('error')): ?>
+					<div class="alert alert-danger" style="text-align: center;">
+						<?= session()->getFlashdata('error') ?>
+					</div>
+				<?php endif; ?>
 				<div class="row">
 					<div class="col-md-6 col-sm-12">
 						<div class="title">
@@ -211,7 +216,7 @@
 	}
 </script>
  -->
- <script>
+<script>
 	function printRow(el, img1Src, img2Src, dogumYeri, dogumTarihi, anneAdi, babaAdi, uyruk, kimlikBelgesiTuru, kimlikBelgesiNumarasi, eposta) {
 		const row = el.closest('tr');
 		const cells = row.querySelectorAll('td');
