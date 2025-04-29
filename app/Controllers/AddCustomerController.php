@@ -23,12 +23,15 @@ class AddCustomerController extends BaseController
         $tc = $this->request->getPost('tc');
 
         // 1. Bu TC ile daha önce kayıt yapılmış mı kontrol et
-        $existingCustomer = $model->where('tc', $tc)->first();
+        if($tc !='11111111111'){
+            $existingCustomer = $model->where('tc', $tc)->first();
     
-        if ($existingCustomer) {
-            // 2. Eğer varsa yönlendir ve mesaj göster
-            return redirect()->to('/homepage')->with('error', 'Bu T.C. numarası ile kayıtlı bir müşteri zaten mevcut!');
+            if ($existingCustomer) {
+                // 2. Eğer varsa yönlendir ve mesaj göster
+                return redirect()->to('/homepage')->with('error', 'Bu T.C. numarası ile kayıtlı bir müşteri zaten mevcut!');
+            }
         }
+    
         $uploadedFileNameOnyuz = 'default.png'; // Başta default resim
         $uploadedFileNameArkayuz = 'default.png'; // Başta default resim
         $createdDate = date('Y-m-d H:i:s');
