@@ -60,7 +60,7 @@
 						<div class="col-md-6 mb-30">
                      
 						<div class="card-box height-100-p pd-20">
-							<h2 class="h4 mb-20">Aylık Kayıt Açma Sayısı</h2>
+                        <h2 class="h4 mb-20" id="monthTitle"></h2>
 							<div id="chart5"></div>
                             <p style="text-align: center;">Bu Ay Yapılan Toplam Kayıt Sayısı: <?= array_sum($thisMonthCounts); ?></p>
 						</div>				
@@ -89,6 +89,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // PHP'den gelen verileri JavaScript'e aktarıyoruz
         var names = <?php echo json_encode($names); ?>;
+        var namesMonth = <?php echo json_encode($namesMonth); ?>;
         var series = <?php echo json_encode($series); ?>;
         var seriesMonth = <?php echo json_encode($seriesMonth); ?>;
         var months = <?php echo json_encode($months); ?>;
@@ -129,7 +130,7 @@
                 data: seriesMonth 
             }],
             xaxis: {
-                categories: names, // X ekseninde kullanıcı isimleri
+                categories: namesMonth, // X ekseninde kullanıcı isimleri
                 labels: {
                     style: {
                         colors: ['#353535'],
@@ -238,5 +239,12 @@
         chart8.render();
     });
 </script>
+<script>
+    const aylar = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+    const simdi = new Date();
+    const ayAdi = aylar[simdi.getMonth()]; // getMonth() 0-11 arası döner
+    const yil = simdi.getFullYear();
 
+    document.getElementById('monthTitle').textContent = `${ayAdi} ${yil} Ayı Kayıt Açma Sayısı`;
+</script>
 <?= view('include/footer') ?>

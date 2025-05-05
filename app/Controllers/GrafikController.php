@@ -35,7 +35,7 @@ class GrafikController extends BaseController
             // Kullanıcı adını alıyoruz (ekleyen_id'ye göre)
             $user = $userModel->find($count['ekleyen_id']);
             if ($user) {
-               
+                $names[] = $user['name']; // Kullanıcı adını ekliyoruz
                 $series[] = (int)$count['count'];  // Kullanıcıya ait toplam kayıt sayısını ekliyoruz
                 // Bu ay için yapılan kayıt sayısını hesaplıyoruz
                 $thisMonthCount = $customerModel->where('status', 'A')
@@ -44,7 +44,7 @@ class GrafikController extends BaseController
                     ->where('created_date <=', date('Y-m-t')) // Bu ayın son günü
                     ->countAllResults(); // Kullanıcının bu ay yaptığı toplam kayıt sayısını alıyoruz
                     if($thisMonthCount>0){
-                        $names[] = $user['name']; // Kullanıcı adını ekliyoruz
+                        $namesMonth[] = $user['name'];
                         $seriesMonth[] = $thisMonthCount;
                     }
                 
@@ -76,6 +76,7 @@ class GrafikController extends BaseController
             'names' => $names,
             'series' => $series,
             'seriesMonth'=>$seriesMonth,
+            'namesMonth' =>$namesMonth,
             'months' => $months,
             'monthlySeries' => $monthlySeries,
             'totalCount' => $totalCount, // Toplam kayıt sayısını gönderiyoruz
