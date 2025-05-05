@@ -90,11 +90,14 @@
         // PHP'den gelen verileri JavaScript'e aktarıyoruz
         var names = <?php echo json_encode($names); ?>;
         var series = <?php echo json_encode($series); ?>;
+        var seriesMonth = <?php echo json_encode($seriesMonth); ?>;
         var months = <?php echo json_encode($months); ?>;
         var monthlySeries = <?php echo json_encode($monthlySeries); ?>;
         var maxMonthly = Math.max(...monthlySeries);
         var yAxisMax = Math.ceil((maxMonthly + 10) / 10) * 10;
-        // Kullanıcı bazında bar grafik (Çubuk grafik)
+        
+    //#region aylık 
+          // Ay bazında line grafik (Aylık toplam kayıtları gösteriyoruz)
         var options5 = {
             chart: {
                 height: 350,
@@ -123,7 +126,7 @@
             },
             series: [{
                 name: 'Kullanıcılar', 
-                data: series 
+                data: seriesMonth 
             }],
             xaxis: {
                 categories: names, // X ekseninde kullanıcı isimleri
@@ -160,9 +163,10 @@
 
         var chart5 = new ApexCharts(document.querySelector("#chart5"), options5);
         chart5.render();
-
-        // Ay bazında line grafik (Aylık toplam kayıtları gösteriyoruz)
+    //#endregion
+      
         
+    //#region en-alt-toplam-firma-cizgi
         var options1 = {
             series: [{
                 name: 'Aylık Kayıt',
@@ -211,6 +215,8 @@
 
         var chart1 = new ApexCharts(document.querySelector("#chart1"), options1);
         chart1.render();
+        //#endregion
+
 
         // Donut grafik (Önceki gibi)
         var options8 = {
