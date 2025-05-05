@@ -299,6 +299,13 @@
               window.onafterprint = function() { window.close(); };
             }
           <\/script>
+		  <div style="position: fixed; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 14px; color: #555;">
+  Samsun SAR Altın Kıymetli Madenler Limited Şirketi olarak size ilişkin birtakım kişisel verileri 6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca işlemekteyiz.Kişisel verileriniz farklı hukuki
+  sebeplere dayanarak şirketin faalitlerini sürdürebilmesi için KVKK tarafından öngörülen temel ilkelere uygun olarak,KVKK'nın 5. ve 6. maddelerinde belitrilen kişisel veri işleme şartları
+  ve amaçlı kapsamında toplanabilmekte, işlenebilmekte ve aktarılabilmektedir.Verilerinizin işlenme amaçları ve veri sahibi olarak haklarınız hakkında detaylı bilgi almak için [www.saraltin.com] adresli internet
+  sitemizde yer alan Kişisel Verilerin Koruması Aydınlatma Metni'ne ulaşabilirsiniz.
+</div>
+
         </body>
         </html>
     `);
