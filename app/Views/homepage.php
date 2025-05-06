@@ -230,7 +230,9 @@
 
 		// Küçük yardımcı fonksiyon
 		function isValidImage(src) {
-			return src && src.trim() && src.trim().toLowerCase() !== 'null' && src.trim().toLowerCase() !== 'undefined';
+			if (!src) return false;
+			const cleanedSrc = src.trim().toLowerCase();
+			return cleanedSrc !== 'null' && cleanedSrc !== 'undefined' && !cleanedSrc.includes('default.png');
 		}
 
 		// imagesHtml’i oluştur
@@ -241,7 +243,7 @@
 				imagesHtml += `
 					<div style="position:relative;width:45%;">
 						<img src="${img1Src}" style="width:100%;" onerror="this.style.display='none'">
-						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.8;pointer-events:none;white-space:nowrap;">
+						<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.3;pointer-events:none;white-space:nowrap;">
 							YALNIZCA ALTIN SATIŞI İÇİNDİR
 						</div>
 					</div>
@@ -251,7 +253,7 @@
 				imagesHtml += `
 					<div style="position:relative;width:45%;">
 						<img src="${img2Src}" style="width:100%;" onerror="this.style.display='none'">
-					<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.8;pointer-events:none;white-space:nowrap;">
+					<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%) rotate(-15deg);color:#808080;font-size:24px;font-weight:bold;opacity:0.3;pointer-events:none;white-space:nowrap;">
 							YALNIZCA ALTIN SATIŞI İÇİNDİR
 						</div>
 					</div>
