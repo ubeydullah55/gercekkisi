@@ -58,6 +58,7 @@
 		/>
 		<link rel="stylesheet" type="text/css" href="<?= base_url("assets/") ?>vendors/styles/style.css" />
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
 			async

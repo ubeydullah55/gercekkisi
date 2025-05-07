@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="form-group mt-3">
                                                 <label for="bilezikResim">Kimlik kartı Arka Yüz Resmi Yükle</label>
-                                                <input type="file" class="form-control" id="arkayuz_resim" name="arkayuz_resim" accept="image/*" onchange="previewImage2(event)">
+                                                <input type="file" class="form-control" id="arkayuz_resim" name="arkayuz_resim" accept="image/*" onchange="previewImage2(event);readOCR();">
                                             </div>
                                         </div>
                                         <div class="col-md-2"></div>
@@ -189,5 +189,132 @@
                     <script>
                         function fixTurkishUppercase(val) {
                             return val.replace(/i/g, 'İ').toUpperCase();
+                        }
+                    </script>
+
+                    <script>
+                        function parseMRZ(text) {
+                            const lines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
+                            if (lines.length < 3) return {
+                                error: "MRZ satırları eksik."
+                            };
+
+                            const [line1, line2, line3] = lines;
+
+                            const documentType = line1.slice(0, 1);
+                            const countryCode = line1.slice(2, 5);
+
+                            // ✅ DÜZELTME: Seri no 9 hane, TC no 11 hane
+                            const afterCountry = line1.slice(5);
+                            const serialNumber = afterCountry.slice(0, 9).replace(/</g, '');
+
+                            const remaining = afterCountry.slice(9);
+                            const tcStart = remaining.indexOf('<') + 1;
+                            const tcNumber = remaining.slice(tcStart).replace(/</g, '').slice(0, 11);
+
+                            const birthDateRaw = line2.slice(0, 6);
+                            const gender = line2.slice(7, 8);
+                            const expiryRaw = line2.slice(8, 14);
+
+                            const surnameAndName = line3.split('<<');
+                            const surname = surnameAndName[0].replace(/</g, '');
+                            const name = (surnameAndName[1] || '').replace(/</g, ' ');
+
+                            function formatDate(yyMMdd, force2000 = false) {
+                                const year = parseInt(yyMMdd.slice(0, 2), 10);
+                                const month = yyMMdd.slice(2, 4);
+                                const day = yyMMdd.slice(4, 6);
+
+                                const fullYear = force2000 ?
+                                    `20${year.toString().padStart(2, '0')}` :
+                                    (year > 30 ? `19${year}` : `20${year}`);
+
+                                return `${fullYear}-${month}-${day}`;
+                            }
+
+                            return {
+                                "Belge Türü": documentType,
+                                "Ülke": countryCode,
+                                "Seri No": serialNumber,
+                                "T.C. No": tcNumber,
+                                "Doğum Tarihi": formatDate(birthDateRaw),
+                                "Cinsiyet": gender === 'M' ? 'Erkek' : (gender === 'F' ? 'Kadın' : 'Belirsiz'),
+                                "Son Geçerlilik Tarihi": formatDate(expiryRaw, true),
+                                "Soyad": surname,
+                                "Ad": name
+                            };
+                        }
+
+                        function readOCR() {
+                            const fileInput = document.getElementById('arkayuz_resim');
+
+                            if (!fileInput.files.length) {
+                                alert("Lütfen bir resim seçin.");
+                                return;
+                            }
+
+                            const image = fileInput.files[0];
+                            const reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                const imageDataUrl = e.target.result;
+
+                                const img = new Image();
+                                img.onload = function() {
+                                    // 🔽 Alt %40'lık kısmı kes
+                                    const mrzHeight = Math.floor(img.height * 0.4);
+                                    const mrzY = img.height - mrzHeight;
+
+                                    const croppedCanvas = document.createElement('canvas');
+                                    croppedCanvas.width = img.width;
+                                    croppedCanvas.height = mrzHeight;
+
+                                    const croppedCtx = croppedCanvas.getContext('2d');
+                                    croppedCtx.drawImage(img, 0, mrzY, img.width, mrzHeight, 0, 0, img.width, mrzHeight);
+
+                                    // 🔄 Gri tonlama işlemi
+                                    const imageData = croppedCtx.getImageData(0, 0, croppedCanvas.width, croppedCanvas.height);
+                                    const data = imageData.data;
+
+                                    for (let i = 0; i < data.length; i += 4) {
+                                        const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                                        data[i] = avg;
+                                        data[i + 1] = avg;
+                                        data[i + 2] = avg;
+                                    }
+
+                                    croppedCtx.putImageData(imageData, 0, 0);
+                                    const grayImageDataUrl = croppedCanvas.toDataURL();
+
+                                    Tesseract.recognize(
+                                        grayImageDataUrl,
+                                        'tur', {
+                                            logger: m => console.log(m) // Konsola loglar, kullanıcı görmez
+                                        }
+                                    ).then(({
+                                        data: {
+                                            text
+                                        }
+                                    }) => {
+                                        const result = parseMRZ(text);
+                                        if (result.error) {
+                                            alert("OCR hatası: " + result.error);
+                                        } else {
+                                            // Otomatik input doldurma
+                                            document.querySelector('input[name="ad"]').value = result["Ad"] || '';
+                                            document.querySelector('input[name="soyad"]').value = result["Soyad"] || '';
+                                            document.querySelector('input[name="tc"]').value = result["T.C. No"] || '';
+                                            document.querySelector('input[name="dogum_tarihi"]').value = result["Doğum Tarihi"] || '';
+                                            document.querySelector('input[name="belge_numarası"]').value = result["Seri No"] || '';
+                                        }
+                                    }).catch(err => {
+                                        alert("OCR işlemi sırasında hata oluştu: " + err.message);
+                                    });
+                                };
+
+                                img.src = imageDataUrl;
+                            };
+
+                            reader.readAsDataURL(image);
                         }
                     </script>
