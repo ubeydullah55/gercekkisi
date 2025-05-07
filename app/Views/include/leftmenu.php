@@ -169,6 +169,11 @@
 						<span class="micon bi bi-bar-chart"></span><span class="mtext">Grafik</span>
 					</a>
 				</li>
+				<li>
+					<a href="<?= site_url('silinenler') ?>" class="dropdown-toggle no-arrow">
+						<span class="micon bi bi-trash"></span><span class="mtext">Silinenler</span>
+					</a>
+				</li>
 				<?php if ($role == 1): ?>
 					<li>
 						<a href="<?= site_url('addpersonel') ?>" class="dropdown-toggle no-arrow">

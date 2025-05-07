@@ -11,6 +11,7 @@ $routes->post('/login', 'LoginController::login');
 $routes->get('/logout', 'LoginController::logout');
 
 $routes->get('/homepage', 'Home::index');
+$routes->get('/silinenler', 'Home::silinenler');
 $routes->get('/addcustomer', 'AddCustomerController::index');
 $routes->post('/savecustomer', 'AddCustomerController::savecustomer');
 $routes->get('/customerdelete/(:num)', 'AddCustomerController::deletecustomer/$1');
