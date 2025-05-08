@@ -24,7 +24,9 @@ class AddCustomerController extends BaseController
 
         // 1. Bu TC ile daha önce kayıt yapılmış mı kontrol et
         if($tc !='11111111111'){
-            $existingCustomer = $model->where('tc', $tc)->first();
+            $existingCustomer = $model->where('tc', $tc)
+                           ->where('status', 'A')
+                           ->first();
     
             if ($existingCustomer) {
                 // 2. Eğer varsa yönlendir ve mesaj göster
