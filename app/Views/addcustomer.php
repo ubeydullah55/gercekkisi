@@ -151,7 +151,7 @@
                                     </div>
                                     <br>
                                     <div class="btn-list">
-                                        <button type="submit" class="btn btn-success btn-lg btn-block">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block" accesskey="s">
                                             Kaydet
                                         </button>
 

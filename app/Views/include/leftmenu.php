@@ -159,7 +159,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="<?= site_url('addcustomer') ?>" class="dropdown-toggle no-arrow">
+					<a href="<?= site_url('addcustomer') ?>" class="dropdown-toggle no-arrow" accesskey="a">
 						<span class="micon bi bi-plus"></span><span class="mtext">Ekle</span>
 					</a>
 				</li>
