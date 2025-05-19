@@ -51,7 +51,7 @@
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Ad<span class="text-danger">*</span></label>
-                                                <input type="text" name="ad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required />
+                                                <input type="text" name="ad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required autocomplete="on" />
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
