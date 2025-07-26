@@ -25,3 +25,7 @@ $routes->post('/insertuser', 'PersonelController::insertuser');
 $routes->get('/deleteuser/(:num)', 'PersonelController::deleteuser/$1');
 
 $routes->get('/grafik', 'GrafikController::index');
+
+$routes->get('/tckarsilastirview', 'Home::tckarsilastirview');
+
+$routes->post('/tckarsilastir', 'Home::tckarsilastir');

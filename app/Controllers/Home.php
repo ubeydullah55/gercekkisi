@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\CustomerModel;
+
 class Home extends BaseController
 {
     public function __construct()
@@ -35,4 +37,36 @@ class Home extends BaseController
         // View'a verileri göndereceğiz
         return view('homepage', ['customers' => $customers]);
     }
+
+    public function tckarsilastirview()
+    {
+        return view('tckarsilastir');
+    }
+
+public function tckarsilastir()
+{
+    $input = $this->request->getPost('tc_list');
+    $tcler = explode("\n", $input);
+    $tcler = array_map('trim', $tcler);
+
+    $kisilerModel = new \App\Models\CustomerModel();
+
+    $dbTcler = $kisilerModel
+        ->whereIn('tc', $tcler)
+        ->findAll();
+
+    $bulunanTcler = array_column($dbTcler, 'tc');
+    $olmayanlar = array_diff($tcler, $bulunanTcler);
+
+    // Tek bir string'e çevir
+    $sonuc = implode("\n", $olmayanlar);
+    $olmayanSayisi = count($olmayanlar); // ✅ Burada sayıyı aldık
+
+    return view('tckarsilastir', [
+        'tc_list' => $input,
+        'sonuc' => $sonuc,
+        'olmayanSayisi' => $olmayanSayisi // ✅ Sayıyı view'e gönderdik
+    ]);
+}
+
 }

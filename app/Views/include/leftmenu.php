@@ -163,7 +163,7 @@
 						<span class="micon bi bi-plus"></span><span class="mtext">Ekle</span>
 					</a>
 				</li>
-			
+
 				<li>
 					<a href="<?= site_url('grafik') ?>" class="dropdown-toggle no-arrow">
 						<span class="micon bi bi-bar-chart"></span><span class="mtext">Grafik</span>
@@ -172,6 +172,11 @@
 				<li>
 					<a href="<?= site_url('silinenler') ?>" class="dropdown-toggle no-arrow">
 						<span class="micon bi bi-trash"></span><span class="mtext">Silinenler</span>
+					</a>
+				</li>
+				<li>
+					<a href="<?= site_url('tckarsilastirview') ?>" class="dropdown-toggle no-arrow">
+						<span class="micon bi bi-diagram-3"></span><span class="mtext">TC Karşılaştır</span>
 					</a>
 				</li>
 				<?php if ($role == 1): ?>
