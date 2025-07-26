@@ -21,13 +21,18 @@
     <div style="display: flex; gap: 20px;">
         <!-- Sol tarafta TC girişi -->
         <div style="flex: 1;">
-            <label for="tc_list">Toplu T.C. No'ları (her satıra bir tane):</label><br>
+            <label for="girilentc">Toplu T.C. No'ları (her satıra bir tane): (Toplam <?= $eklenenSayisi ?? 0 ?> adet)</label><br>
             <textarea name="tc_list" id="tc_list" rows="20" style="width: 100%;"><?= esc($tc_list ?? '') ?></textarea>
         </div>
 
         <!-- Sağ tarafta sonuç alanı -->
         <div style="flex: 1;">
-          <label for="sonuc">Veritabanında Olmayanlar: (Toplam <?= $olmayanSayisi ?? 0 ?> adet)</label><br>
+          <label for="sonuc">
+    Veritabanında Olmayanlar:
+    <span style="color: red;">(<?= $olmayanSayisi ?? 0 ?> adet)</span>
+    |
+    <span style="color: green;">Olan: <?= $bulunanSayisi ?? 0 ?> adet</span>
+</label>
             <textarea id="sonuc" rows="20" style="width: 100%; background-color:#f5f5f5;" readonly><?= esc($sonuc ?? '') ?></textarea>
         </div>
     </div>

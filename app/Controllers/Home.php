@@ -43,30 +43,36 @@ class Home extends BaseController
         return view('tckarsilastir');
     }
 
-public function tckarsilastir()
-{
-    $input = $this->request->getPost('tc_list');
-    $tcler = explode("\n", $input);
-    $tcler = array_map('trim', $tcler);
+    public function tckarsilastir()
+    {
+        $input = $this->request->getPost('tc_list');
+        $tcler = explode("\n", $input);
 
-    $kisilerModel = new \App\Models\CustomerModel();
+        // Boşlukları temizle, boşları at
+        $tcler = array_filter(array_map('trim', $tcler));
 
-    $dbTcler = $kisilerModel
-        ->whereIn('tc', $tcler)
-        ->findAll();
+        $kisilerModel = new \App\Models\CustomerModel();
 
-    $bulunanTcler = array_column($dbTcler, 'tc');
-    $olmayanlar = array_diff($tcler, $bulunanTcler);
+        $dbTcler = $kisilerModel
+            ->whereIn('tc', $tcler)
+            ->findAll();
 
-    // Tek bir string'e çevir
-    $sonuc = implode("\n", $olmayanlar);
-    $olmayanSayisi = count($olmayanlar); // ✅ Burada sayıyı aldık
+        $bulunanTcler = array_column($dbTcler, 'tc');
+        $olmayanlar = array_diff($tcler, $bulunanTcler);
 
-    return view('tckarsilastir', [
-        'tc_list' => $input,
-        'sonuc' => $sonuc,
-        'olmayanSayisi' => $olmayanSayisi // ✅ Sayıyı view'e gönderdik
-    ]);
-}
+        $sonuc = implode("\n", $olmayanlar);
 
+        // 👇 Yeni sayılar
+        $eklenenSayisi = count($tcler);
+        $olmayanSayisi = count($olmayanlar);
+        $bulunanSayisi = count($bulunanTcler); // ✅ eklendi
+
+        return view('tckarsilastir', [
+            'tc_list' => $input,
+            'sonuc' => $sonuc,
+            'olmayanSayisi' => $olmayanSayisi,
+            'bulunanSayisi' => $bulunanSayisi,
+            'eklenenSayisi' => $eklenenSayisi
+        ]);
+    }
 }
