@@ -16,6 +16,28 @@ class AddCustomerController extends BaseController
     {
         return view('addcustomer');
     }
+
+
+    public function checkTc()
+{
+    $tc = $this->request->getPost('tc');
+
+    if (!$tc || strlen($tc) != 11) {
+        return $this->response->setJSON(['exists' => false]);
+    }
+
+    $model = new \App\Models\CustomerModel();
+
+    $exists = $model
+        ->where('tc', $tc)
+        ->where('status', 'A')
+        ->first();
+
+    return $this->response->setJSON([
+        'exists' => $exists ? true : false
+    ]);
+}
+
     public function savecustomer()
     {
         
@@ -30,7 +52,7 @@ class AddCustomerController extends BaseController
     
             if ($existingCustomer) {
                 // 2. Eğer varsa yönlendir ve mesaj göster
-                return redirect()->to('/homepage')->with('error', 'Bu T.C. numarası ile kayıtlı bir müşteri zaten mevcut!');
+                return redirect()->to('/addcustomer')->with('error', 'Bu T.C. numarası ile kayıtlı bir müşteri zaten mevcut!');
             }
         }
     
@@ -83,7 +105,8 @@ class AddCustomerController extends BaseController
 
         
         $model->insert($data);
-        return redirect()->to('/homepage')->with('success', 'Müşteri başarıyla eklendi.');
+        return redirect()->to('/addcustomer')->with('success', 'Müşteri başarıyla eklendi.');
+
     }
 
 

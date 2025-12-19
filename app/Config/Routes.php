@@ -11,6 +11,8 @@ $routes->post('/login', 'LoginController::login');
 $routes->get('/logout', 'LoginController::logout');
 
 $routes->get('/homepage', 'Home::index');
+$routes->post('check-tc', 'AddCustomerController::checkTc');
+
 $routes->get('/silinenler', 'Home::silinenler');
 $routes->get('/addcustomer', 'AddCustomerController::index');
 $routes->post('/savecustomer', 'AddCustomerController::savecustomer');
@@ -29,3 +31,5 @@ $routes->get('/grafik', 'GrafikController::index');
 $routes->get('/tckarsilastirview', 'Home::tckarsilastirview');
 
 $routes->post('/tckarsilastir', 'Home::tckarsilastir');
+
+$routes->get('/excel', 'Home::excelData');

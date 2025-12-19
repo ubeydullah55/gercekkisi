@@ -75,4 +75,11 @@ class Home extends BaseController
             'eklenenSayisi' => $eklenenSayisi
         ]);
     }
+    
+     public function excelData()
+    {
+        $model = new CustomerModel();
+        $data = $model->findAll(); // tüm veriler
+        return $this->response->setJSON($data);
+    }
 }

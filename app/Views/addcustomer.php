@@ -9,6 +9,16 @@
                             <div class="pd-20 card-box mb-30">
                                 <div class="clearfix">
                                     <div class="pull-left">
+                                        <?php if (session()->getFlashdata('success')): ?>
+                                            <div class="alert alert-success" style="text-align: center;">
+                                                <?= session()->getFlashdata('success') ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if (session()->getFlashdata('error')): ?>
+                                            <div class="alert alert-danger" style="text-align: center;">
+                                                <?= session()->getFlashdata('error') ?>
+                                            </div>
+                                        <?php endif; ?>
                                         <h4 class="text-blue h4">Gerçek Kişi Ekle</h4>
 
                                     </div>
@@ -50,6 +60,35 @@
                                     <div class="row">
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
+                                                <label>T.C Kimlik Numarası<span class="text-danger">*</span></label>
+                                                <div class="position-relative">
+                                                    <input type="text"
+                                                        name="tc"
+                                                        id="tcInput"
+                                                        class="form-control pr-5"
+                                                        maxlength="11"
+                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                                        required />
+
+                                                    <span id="tcStatus"
+                                                        style="
+            display:none;
+            position:absolute;
+            top:50%;
+            right:12px;
+            transform:translateY(-50%);
+            color:#dc3545;
+            font-size:12px;
+            font-weight:600;
+            pointer-events:none;">
+                                                        Bu T.C. kayıtlı
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
                                                 <label>Ad<span class="text-danger">*</span></label>
                                                 <input type="text" name="ad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required autocomplete="on" />
                                             </div>
@@ -60,12 +99,7 @@
                                                 <input type="text" name="soyad" class="form-control" oninput="this.value = fixTurkishUppercase(this.value);" required />
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-12">
-                                            <div class="form-group">
-                                                <label>T.C Kimlik Numarası<span class="text-danger">*</span></label>
-                                                <input type="text" name="tc" class="form-control" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required />
-                                            </div>
-                                        </div>
+
                                         <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label>Doğum Tarihi</label>
@@ -317,4 +351,46 @@
 
                             reader.readAsDataURL(image);
                         }
+                    </script>
+                    <script>
+                        setTimeout(() => {
+                            document.querySelectorAll('.alert').forEach(el => el.remove());
+                        }, 7000);
+                    </script>
+
+                    <script>
+                        $('#tcInput').on('blur', function() {
+                            const tc = $(this).val();
+                            const input = $(this);
+                            const statusText = $('#tcStatus');
+
+                            if (tc.length !== 11) {
+                                input.removeClass('border-success border-danger');
+                                statusText.hide();
+                                return;
+                            }
+
+                            $.ajax({
+                                url: '<?= base_url("check-tc") ?>',
+                                type: 'POST',
+                                data: {
+                                    tc: tc
+                                },
+                                dataType: 'json',
+                                success: function(res) {
+                                    input.removeClass('border-success border-danger');
+
+                                    if (res.exists) {
+                                        input.addClass('border-danger');
+                                        statusText.show();
+                                    } else {
+                                        input.addClass('border-success');
+                                        statusText.hide();
+                                    }
+                                },
+                                error: function() {
+                                    console.log('TC kontrolü yapılamadı');
+                                }
+                            });
+                        });
                     </script>
